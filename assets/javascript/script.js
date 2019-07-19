@@ -1,6 +1,6 @@
 $(document).ready(() => {
 
-  var xhr = $.get("https://opentdb.com/api.php?amount=15&category=9&difficulty=easy&type=multiple");
+  var xhr = $.get("https://opentdb.com/api.php?amount=15&category=9&difficulty=easy&type=boolean");
   xhr.done(function(data) {
 
     console.log("success got data", data);
@@ -19,19 +19,32 @@ $(document).ready(() => {
       console.log('wrong answers ' + wrongAnswers);
 
       let displayCategory = $("<h1 class='text-left'>").html(categoryDisplay);
-      let displayQuestions = $("<h3 class='text-left'>").html(questions);
+      let displayQuestions = $("<div class='text-left h4'>").html(questions);
+//       let displayQuestions = $('<ul>').html('<li>' +  questions + '</li>');
+      
+      
       let displayCorrectAnswer = $("<p class='text-left'>").html(correctAnswer);
+      let displayWrongAnswer = $("<p class='text-left'>").html(wrongAnswers)
+//       let displayMultChoice = $('input:radio[name= "correct"]:checked').val(correctAnswer);
       
-      let displayMultChoice = $('input:radio[name= "correct"]:checked').val();
       
       
+//        let staticSource = giphySearch[i].images.original_still.url;
+        let questionTopic = $("<input>");
+        questionTopic.attr("type", 'radio');
+      questionTopic.attr('data-index', i);
+      
+       questionTopic.prepend(displayCorrectAnswer);
+
      
 
-      let questDiv = $("<div class='questions'>");
+
+      let questDiv = $("<div class='questions list-group-item'>");
       let br = $('<br/>');
 
       questDiv.prepend(displayCategory)
-      questDiv.append(displayQuestions,displayCorrectAnswer,br, displayMultChoice,br, wrongAnswers);
+      questDiv.append(questionTopic)
+      questDiv.append(displayQuestions,br,displayCorrectAnswer, displayWrongAnswer, questionTopic);
       $('#question-div').append(questDiv)
 
 
