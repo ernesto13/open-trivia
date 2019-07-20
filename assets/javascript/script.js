@@ -20,31 +20,33 @@ $(document).ready(() => {
 
       let displayCategory = $("<h1 class='text-left'>").html(categoryDisplay);
       let displayQuestions = $("<div class='text-left h4'>").html(questions);
-//       let displayQuestions = $('<ul>').html('<li>' +  questions + '</li>');
-      
-      
+      //       let displayQuestions = $('<ul>').html('<li>' +  questions + '</li>');
+
+
       let displayCorrectAnswer = $("<p class='text-left'>").html(correctAnswer);
       let displayWrongAnswer = $("<p class='text-left'>").html(wrongAnswers)
-//       let displayMultChoice = $('input:radio[name= "correct"]:checked').val(correctAnswer);
-      
-      
-      
-//        let staticSource = giphySearch[i].images.original_still.url;
-        let questionTopic = $("<input>");
-        questionTopic.attr("type", 'radio');
-      questionTopic.attr('data-index', i);
-      
-       questionTopic.prepend(displayCorrectAnswer);
+      //       let displayMultChoice = $('input:radio[name= "correct"]:checked').val(correctAnswer);
 
-     
+
+
+      //        let staticSource = giphySearch[i].images.original_still.url;
+      let radioBtn = $("<input>");
+      radioBtn.attr("type", 'radio');
+      radioBtn.attr('name', 'correct');
+      radioBtn.attr('value', correctAnswer)
+      radioBtn.attr('data-index', i);
+
+      radioBtn.prepend(displayCorrectAnswer);
+
+
 
 
       let questDiv = $("<div class='questions list-group-item'>");
       let br = $('<br/>');
 
       questDiv.prepend(displayCategory)
-      questDiv.append(questionTopic)
-      questDiv.append(displayQuestions,br,displayCorrectAnswer, displayWrongAnswer, questionTopic);
+      //       questDiv.append(radioBtn)
+      questDiv.append(displayQuestions, br, displayCorrectAnswer, displayWrongAnswer, radioBtn);
       $('#question-div').append(questDiv)
 
 
