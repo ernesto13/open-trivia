@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Open Trivia</title>
-  
-  
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
@@ -16,34 +17,46 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
   <link rel="stylesheet" href="assets/css/style.css">
-  
-  
-  
+
+
+
 </head>
+
 <body>
-  
+
   <div class="container">
-    
-    <div class="jumbotron">
-    <form action="">
-      <div id="question-div"></div>
-      </form>
-    
+
+    <!--   score card     -->
+    <div class="card border-success mt-3 mx-auto score-card" style="max-width: 18rem;">
+      <div class="card-header">Score</div>
+      <div class="card-body text-secondary">
+        <h5 class="card-title">Your Scores</h5>
+        <p id="wins" class="card-text">Correct: </p>
+        <p id="losses" class="card-text">Incorrect: </p>
+        <p id="missed" class="card-text"> </p>
+      </div>
     </div>
-  
-      
-    
-   
- 
-  
-  
-  
-  
+
+    <!--    end of score card    -->
+
+    <div class="jumbotron mt-3">
+
+
+      <form action="">
+
+        <div class="category text-center h4 mb-3"></div>
+
+        <div id="question"></div>
+      </form>
+
+    </div>
+
+
   </div>
-  
-  
-  
-   <!-- Optional JavaScript -->
+
+
+
+  <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.3.4/lib/darkmode-js.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -54,7 +67,9 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.core.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
 
-
-  <script src="assets/javascript/script.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.4.0/lib/darkmode-js.min.js"></script>
+    <script src="assets/javascript/script.js"></script>
 </body>
+
 </html>
