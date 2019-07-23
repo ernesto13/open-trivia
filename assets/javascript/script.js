@@ -4,6 +4,14 @@ $(document).ready(() => {
   let jumbotron = $('.jumbotron');
   jumbotron.show();
   scoreCard.hide();
+  
+  
+//   for animation
+  
+  let fadeInScore = () => {
+          scoreCard.classList.add('animated', 'fadeInDownBig');
+        }  
+            
 
   //   darkmode 
   var options = {
@@ -25,7 +33,6 @@ $(document).ready(() => {
 
 
 
-
   const API = 'https://opentdb.com/api.php?amount=20&category=9&difficulty=easy&type=multiple';
   var xhr = $.get(API);
   xhr.done(function(data) {
@@ -42,74 +49,90 @@ $(document).ready(() => {
     let dataArray = data.results;
 
     let playTrivia = function() {
-      if(nextQuest < 20) {
-        
-        
-//         inside of if 
-        
-        
-        
-//         end of if
+      if (nextQuest < 20) {
+
+
+        //         inside of if 
+
+
+
+        //         end of if
         let categoryDisplay = dataArray[nextQuest].category;
-      console.log('cat disp: ' + categoryDisplay);
+        console.log('cat disp: ' + categoryDisplay);
 
-      let correctAnswer = dataArray[nextQuest].correct_answer;
-      console.log('correct answer: ' + correctAnswer);
-      let wrongAnswers = dataArray[nextQuest].incorrect_answers;
-      console.log('wrongAnswers' + wrongAnswers);
-
-      let question = $('<h3>').html(dataArray[nextQuest].question);
-      wrongAnswers.push(correctAnswer);
-      wrongAnswers.sort();
-      $('.category').empty().append(categoryDisplay);
-      $('#question').empty().append(question);
-      //     for loop here
-
-      $.each(wrongAnswers, function(index, value) {
-
-        let newDiv = $("<div>").addClass("answer btn btn-primary mb-2 ml-3").html(value);
-        if (value === correctAnswer) {
-          console.log('if value correctAnswer: ' + correctAnswer);
-          newDiv.attr("id", "correctAnswer");
-
-        }
-        $("#question").append(newDiv);
-      });
-
-      $('.answer').on('click', function() {
-
-        if (this.id === "correctAnswer") {
-          correctChoice++;
-          console.log('corrrrecto: ' + correctAnswer + correctChoice);
-          $('#wins').html('Correct: ' + correctChoice);
-          $(this).addClass("correctAnswer");
-          nextQuest++;
-          playTrivia();
-        } else {
-          incorrectChoice++;
-
-          $('#losses').html('Incorrect: ' + incorrectChoice);
-          $(this).addClass('incorrectAnswer');
-          nextQuest++;
-          playTrivia();
-        }
-
-
-      });
+        let correctAnswer = dataArray[nextQuest].correct_answer;
+        console.log('correct answer: ' + correctAnswer);
+        let wrongAnswers = dataArray[nextQuest].incorrect_answers;
+        console.log('wrongAnswers' + wrongAnswers);
         
         
+        let question = $('<h3>').html(dataArray[nextQuest].question);
+        wrongAnswers.push(correctAnswer);
+        wrongAnswers.sort();
+        $('.category').empty().append('Category: ' + categoryDisplay);
+        $('#question').empty().append(question);
+        //     for loop here
+
+        $.each(wrongAnswers, function(index, value) {
+
+          let newDiv = $("<div>").addClass("answer btn btn-primary btn-block active mb-2").html(value);
+          if (value === correctAnswer) {
+            console.log('if value correctAnswer: ' + correctAnswer);
+            newDiv.attr("id", "correctAnswer");
+
+          }
+          $("#question").append(newDiv);
+        });
+
+        $('.answer').on('click', function() {
+          
+
+          if (this.id === "correctAnswer") {
+            correctChoice++;
+            console.log('corrrrecto: ' + correctAnswer + correctChoice);
+            $('#wins').html('Correct: ' + correctChoice);
+            $(this).addClass("correctAnswer");
+            nextQuest++;
+            playTrivia();
+          } else {
+            incorrectChoice++;
+            
+            
+            $('#losses').html('Incorrect: ' + incorrectChoice);
+            $(this).addClass('incorrectAnswer');
+          
+            nextQuest++;
+            
+//              const shakeWrongAnswer = document.querySelector('.incorrectAnswer');
+
+//         let shake = () => {
+//           shakeWrongAnswer.classList.add('animated', 'shake')
+//         }  
+            
+            
+//               shake();
+            
+            
+            playTrivia();
+          }
+
+
+        });
+
+
       } else {
-        scoreCard.show();
+        scoreCard.fadeIn( "slow" );
+//         fadeInScore();
         jumbotron.hide();
-       
+
       }
 
 
 
     }
     //     end of function
-    
-    
+
+
     playTrivia();
 
 
