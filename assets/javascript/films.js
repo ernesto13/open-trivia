@@ -4,7 +4,7 @@ $(document).ready(() => {
   let jumbotron = $('.jumbotron');
   let jumbotronFluid = $('.jumbotron-fluid');
   let startForm = $('#choose-form');
-  let sportsBtn = $('#sports-knowledge');
+  let filmBtn = $('#film-knowledge');
   let categoryDisp = $('.category');
   let restart = $('#start-over');
   let modalScore = $('#modal-score');
@@ -36,11 +36,12 @@ $(document).ready(() => {
   darkmode.showWidget();
 
 
+  // end of darkmode
 
-  function sportsKnowledge() {
+  function filmKnowledge() {
 
 
-    const API = "https://opentdb.com/api.php?amount=15&category=21&difficulty=easy&type=multiple";
+    const API = "https://opentdb.com/api.php?amount=20&category=11&difficulty=easy&type=multiple";
 
     $.ajax({
       url: API,
@@ -63,12 +64,7 @@ $(document).ready(() => {
       function playTrivia() {
         if (nextQuest < 15) {
 
-
-          //         inside of if 
-
           let categoryDisplay = dataArray[nextQuest].category;
-          console.log('cat disp: ' + categoryDisplay);
-
           let correctAnswer = dataArray[nextQuest].correct_answer;
           console.log('correct answer: ' + correctAnswer);
           let wrongAnswers = dataArray[nextQuest].incorrect_answers;
@@ -99,7 +95,6 @@ $(document).ready(() => {
 
           interval = setInterval(function() {
             if (timeLeft === 0) {
-              //             put missed here and time up and add to missed
               missed++;
               questCount++
               $('.question-count').html('Question ' + questCount + ' out of 15')
@@ -113,17 +108,21 @@ $(document).ready(() => {
               setTimeout(function() {
                 nextQuest++;
                 playTrivia();
-              }, 1500);
+              }, 2000);
 
             } else {
-
+            
               $('.time').html('<i class="fas fa-stopwatch"></i> ' + timeLeft);
               timeLeft--;
 
             }
           }, 1000);
 
+
+
           //  start over button here
+
+
           restart.on('click', function(e) {
             e.preventDefault();
             scoreCard.hide();
@@ -149,13 +148,11 @@ $(document).ready(() => {
               console.log('corrrrecto: ' + correctAnswer + correctChoice);
               $('#wins').html('Correct: ' + correctChoice);
               $(this).addClass("btn btn-info animated bounce faster");
-              $('.time').html('Correct!');
 
             } else {
               incorrectChoice++;
 
               questCount++
-              $('.time').html('WRONG!');
               $('.question-count').html('Question ' + questCount + ' out of 15')
               $('#losses').html('Incorrect: ' + incorrectChoice);
               $(this).addClass('btn btn-danger animated shake faster');
@@ -163,7 +160,7 @@ $(document).ready(() => {
 
               setTimeout(function() {
                 $("#correctAnswer").addClass("btn btn-info animated bounce faster");
-
+                //               correctAnswer
               }, 2000);
 
             }
@@ -174,25 +171,24 @@ $(document).ready(() => {
               playTrivia();
             }, 3500);
 
-
           });
 
 
         } else {
-          //       
           modalScore.modal('show');
           restart.fadeIn('slow');
 
           jumbotron.hide();
-          sportsKnowledge();
+          filmKnowledge();
 
         }
 
       }
+
       //     end of function
 
       // start trivia button
-      sportsBtn.on('click', function(e) {
+      filmBtn.on('click', function(e) {
         e.preventDefault();
         jumbotronFluid.hide();
         playTrivia()
@@ -200,14 +196,12 @@ $(document).ready(() => {
         jumbotron.show();
         categoryDisp.fadeIn('slow');
 
-
       });
-
 
     });
 
   }
 
-  sportsKnowledge()
+  filmKnowledge()
 
 });

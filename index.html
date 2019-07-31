@@ -23,38 +23,138 @@
 </head>
 
 <body>
+  
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1cc9af;">
+  <a class="navbar-brand" href="#"><i class="fas fa-book-open"></i> Trivia</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+       
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+     
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+  
+  
 
   <div class="container">
 
-    <!--   score card     -->
-    <div class="card border-success mt-3 mx-auto score-card" style="max-width: 18rem;">
-      <div class="card-header">Score</div>
-      <div class="card-body text-secondary">
+       
+<!--   new score card modal   -->
+   
+<!-- Modal -->
+<div class="modal fade" id="modal-score" tabindex="-1" role="dialog" aria-labelledby="modal-scoreLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-scoreLabel">Open Trivia Scores</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="card-body text-secondary">
         <h5 class="card-title">Your Scores</h5>
         <p id="wins" class="card-text">Correct: </p>
         <p id="losses" class="card-text">Incorrect: </p>
-        <p id="missed" class="card-text"> </p>
+        <p id="missed" class="card-text">Missed: </p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="start-over" type="button" class="btn btn-primary">Start Over</button>
       </div>
     </div>
-
-    <!--    end of score card    -->
+  </div>
+</div>
     
-    <div class="category text-center h5 mb-2 mt-3">Category: </div>
+    
+<!--  end of modal    -->
+    
+<!--  button links to choose category    -->
+    
+    
+    <div class="jumbotron-fluid col-sm-12 col-lg-8 mx-auto">
+  <h1 class="display-4 text-center mt-3 mx-auto">Know your ledge</h1>
+  <p class="lead">This is a simple hero unit, a jumbotron-style component a dropdown button link making ajax calls to the open trivia database. Link <a href="https://opentdb.com/" target="_blank">Open Trivia</a> </p>
+  <hr class="my-4">
+  <p>Test your knowledge and choose from a variety of categories.</p>
+  <p class="lead">
+    <div class="container">
+    <div class="btn-group mt-3">
+  <button type="button" class="btn btn-info dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Categories
+  </button>
+  <div class="dropdown-menu">
+    <a id="start-btn" class="dropdown-item" href="#">Random</a>
+    <a id="sports-knowledge" class="dropdown-item" href="#">Sports</a>
+<!--     <a id="animals-knowledge" class="dropdown-item" href="#">Animals</a> -->
+    <a id="general-knowledge" class="dropdown-item" href="#">General Knowledge</a>
+     <a id="film-knowledge" class="dropdown-item" href="#">Films</a>
+     <a id="television-knowledge" class="dropdown-item" href="#">Television</a>
+     <a id="computer-knowledge" class="dropdown-item" href="#">Computers</a>
+<!--     <a class="dropdown-item" href="#">Music</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a> -->
+  </div>
+</div>
+    </div>
+  </p>
+</div>
+    
+<!--    end of category  -->
 
-    <div class="jumbotron mt-3">
 
 
-      <form action="">
+    <div class="category text-center h5 mb-2 mt-3"></div>
 
-        
+<div class="time text-center"></div>
+    <div class="jumbotron mt-3 col-sm-12 col-lg-8 mx-auto">
+     
+
+      <form>
+
+
 
         <div id="question" class="text-center"></div>
       </form>
 
     </div>
-
+    
+   
 
   </div>
+  <p class="question-count mx-auto mt-1 fixed-bottom text-center"></p>
+  
+<!-- bottom navbar   -->
+<!--    <nav id="bottom-nav" class="navbar navbar-expand-lg navbar-light fixed-bottom" style="background-color: #1cc9af;">
+
+    <p class="question-count mx-auto mt-1"></p>
+  
+</nav> -->
+  
 
 
 
@@ -69,9 +169,15 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.core.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
 
-  
+
   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.4.0/lib/darkmode-js.min.js"></script>
-    <script src="assets/javascript/script.js"></script>
+    <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/script.js"></script>
+   <script src="assets/javascript/films.js"></script>
+   <script src="assets/javascript/general.js"></script>
+   <script src="assets/javascript/television.js"></script>
+   <script src="assets/javascript/computer.js"></script>
+  
 </body>
 
 </html>
